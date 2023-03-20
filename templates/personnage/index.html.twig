@@ -18,7 +18,7 @@
         {% for personnage in personnages %}
             <tr>
                 <td>{{ personnage.id }}</td>
-                <td>{{ personnage.prenon }}</td>
+                <td>{{ personnage.prenom }}</td>
                 <td>{{ personnage.nom }}</td>
                 <td>
                     <a href="{{ path('app_personnage_show', {'id': personnage.id}) }}">show</a>

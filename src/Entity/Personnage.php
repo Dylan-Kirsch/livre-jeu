@@ -16,7 +16,7 @@ class Personnage
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $prenon = null;
+    private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
@@ -38,14 +38,14 @@ class Personnage
         return $this->id;
     }
 
-    public function getPrenon(): ?string
+    public function getprenom(): ?string
     {
-        return $this->prenon;
+        return $this->prenom;
     }
 
-    public function setPrenon(string $prenon): self
+    public function setprenom(string $prenom): self
     {
-        $this->prenon = $prenon;
+        $this->prenom = $prenom;
 
         return $this;
     }
@@ -106,7 +106,7 @@ class Personnage
 
     public function __toString()
     {
-        return $this->prenon;
+        return $this->prenom;
         return $this->nom;
     }
 }

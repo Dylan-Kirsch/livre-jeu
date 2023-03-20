@@ -28,13 +28,14 @@ class PersonnageController extends AbstractController
         $form = $this->createForm(PersonnageType::class, $personnage);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             $personnageRepository->save($personnage, true);
 
             return $this->redirectToRoute('app_personnage_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('personnage/new.html.twig', [
+        return $this->render('personnage/new.html.twig', [
             'personnage' => $personnage,
             'form' => $form,
         ]);

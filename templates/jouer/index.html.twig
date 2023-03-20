@@ -8,13 +8,25 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body text-center d-flex flex-column">
+                {% for personnage in personnages %}
+                    <img src="{{ asset('images/avatars/'~personnage.avatar.getNomFichier())}}">
+                    <a href="#" class="m-2">{{ personnage.prenom }} {{ personnage.nom }}</a>
+                    
+                {% else %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Stagiaire/symfony/livre-jeu/src/Controller/JouerController.php'|file_link(0) }}">src/Controller/JouerController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Stagiaire/symfony/livre-jeu/templates/jouer/index.html.twig'|file_link(0) }}">templates/jouer/index.html.twig</a></code></li>
-    </ul>
-</div>
+                Aucun personnage de trouvé
+                {% endfor %}
+                <a href="#" class="btn btn-primary">Créer</a>
+            </div>
+        </div>
+    </div>
+<div>
+    
 {% endblock %}
+
+
+

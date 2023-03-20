@@ -12,7 +12,7 @@ class PersonnageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenon')
+            ->add('prenom')
             ->add('nom')
             ->add('avatar')
         ;
