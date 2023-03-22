@@ -9,6 +9,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PersonnageRepository;
 use App\Form\PersonnageType;
 use App\Entity\Personnage;
+use App\Repository\AventureRepository;
+use App\Repository\PartieRepository;
+use App\Entity\Partie;
+use App\Repository\EtapeRepository;
 
 
 class JouerController extends AbstractController
@@ -23,7 +27,7 @@ class JouerController extends AbstractController
     }
 
     #[Route('/jouer/new', name: 'app_jouer_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, PersonnageType $personnageType): Response 
+    public function new(Request $request, PersonnageRepository $personnageRepository): Response 
     {
 
         $personnage = new Personnage();
@@ -38,9 +42,76 @@ class JouerController extends AbstractController
         }
 
         return $this->render('jouer/new_personnage.html.twig', [
-            'form' => $form,
-            'personnage' => $personnage
+            'personnage' => $personnage,
+            'form' => $form
+            
         ]);
 
     }
+
+    #[Route('/jouer/aventures/{idPersonnage}', name: 'app_choix_aventure', methods: ['GET'])]
+    public function afficherAventures( PersonnageRepository $personnageRepository,AventureRepository $AventureRepository,$idPersonnage, ): Response
+    {
+        $personnage = $personnageRepository->find($idPersonnage);
+        $aventures = $AventureRepository->findAll();
+
+        return $this->render('jouer/aventures.html.twig', [
+            'personnage' => $personnage,
+            'aventures' => $aventures
+        ]);
+    }
+
+    #[Route('/jouer/aventures/{idPersonnage}/{idAventure}', name: 'app_start_aventure', methods: ['GET'])]
+    public function demarrerAventure( PersonnageRepository $personnageRepository,AventureRepository $AventureRepository,PartieRepository $partieRepository,$idPersonnage,$idAventure): Response
+    {
+        
+
+        $personnage = $personnageRepository->find($idPersonnage);
+        $aventure = $AventureRepository->find($idAventure);
+        $partie = $partieRepository->findOneBy(array('aventurier'=>$personnage,'aventure'=>$aventure));
+        $isNewPartie = !isset($partie);
+
+        if ($isNewPartie)
+        {
+            $isNewPartie = true;
+            $partie=new Partie();
+            $partie->setAventurier($personnage);
+            $partie->setAventure($aventure);
+            $partie->setEtape($aventure->getPremiereEtape());
+            $partie->setDatePartie(new \DateTime('now'));
+            $partieRepository->save($partie,true);
+        }
+
+        return $this->render('jouer/aventure-start.html.twig', [
+            'personnage' => $personnage,
+            'aventures' => $aventure,
+            'partie' => $partie
+        ]);
+    }
+
+    #[Route('/jouer/etape/{idPartie}/{idEtape}', name: 'app_play_aventure', methods: ['GET'])]
+
+    public function jouerAventure(PartieRepository $partieRepository, EtapeRepository $etapeRepository, $idPartie, $idEtape)
+    {
+
+        $partie = $partieRepository->find($idPartie);
+        $etape = $etapeRepository->find($idEtape);
+
+        return $this->render('jouer/aventures.html.twig', [
+            'partie' => $partie,
+            'etape' => $etape
+        ]);
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+

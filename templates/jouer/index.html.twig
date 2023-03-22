@@ -12,15 +12,18 @@
     <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="card" style="width: 18rem;">
             <div class="card-body text-center d-flex flex-column">
+
                 {% for personnage in personnages %}
+
                     <img src="{{ asset('images/avatars/'~personnage.avatar.getNomFichier())}}">
-                    <a href="#" class="m-2">{{ personnage.prenom }} {{ personnage.nom }}</a>
+                    <a href="{{path('app_choix_aventure',{'idPersonnage': personnage.id})}}" >
+                        {{ personnage.prenom }} {{ personnage.nom }}
+                    </a>
                     
                 {% else %}
-
-                Aucun personnage de trouvé
+                    Aucun personnage de trouvé
                 {% endfor %}
-                <a href="#" class="btn btn-primary">Créer</a>
+                <a href="{{ path('app_jouer_new') }}" class="btn btn-primary">Créer</a>
             </div>
         </div>
     </div>

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des aventures!{% endblock %}
+
+{% block body %}
+
+    
+{% for aventure in aventures %}
+
+<div class="row d-flex justify-content-around bg-white">
+    <div class="col m-3">
+        <div class="card w-50">
+            <div class="card-body">
+
+                <img src="{{ asset('images/avatars/'~personnage.avatar.getNomFichier())}}">
+        
+                <p>{{ personnage.prenom }} {{ personnage.nom }}</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col m-3">
+        <div class="card w-50">
+            <div class="card-body">
+
+                <a class="fw-bold" href="#">{{ aventure.titre}}</a>
+                <p>{{ aventure.description }}</p>
+
+                <a href="#" class="btn bg-primary text-white">Jouer</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+    Aucun personnage de trouvé
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

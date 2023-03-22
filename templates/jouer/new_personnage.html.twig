@@ -9,11 +9,18 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
         
-        {{ form_end(form) }}
+        
     </div>
     <div class="d-flex flex-row-reverse rounded-1">
-        <a href="#"><button class="bg-danger fs-3 text-light p-2">Créer</button></a>
+        <button class="bg-danger fs-3 text-light p-2">{{ button_label|default('Créer') }}</button>
+
+        {{ form_end(form) }}
+
         <a href="#"><button class="bg-danger fs-3 text-light p-2">Retour</button></a>
     </div>
+    
+    
+
 </div>
+
 {% endblock %}
