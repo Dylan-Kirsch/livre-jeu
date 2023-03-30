@@ -15,7 +15,7 @@ class EtapeType extends AbstractType
             ->add('texte_ambiance')
             ->add('libelle')
             ->add('aventureDebutee')
-            ->add('finAdventure')
+            ->add('finAventure')
             ->add('finAventure')
         ;
     }

@@ -4,10 +4,13 @@
 
 {% block body %}
 
-{{partie.id}} {{etape.id}}
+    <p class="text-white">Le personnage Lucette MARTINEZ commence l'aventure Le Tombeau des Renegats!</p>
 
-<p>Le personnage Lucette MARTINEZ commence l'aventure Le Tombeau des Renegats!</p>
-
+    <a href='{{path('app_play_aventure',{'idPersonnage':personnage.id,
+                                        'idPartie':partie.id,
+                                        'idEtape':partie.etape.id})}}' 
+                                        class="btn btn-primary">Lancer</a>
+ 
 
 {% endblock %}
 

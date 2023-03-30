@@ -16,13 +16,13 @@
         </thead>
         <tbody>
         {% for aventure in aventures %}
-            <tr>
+            <tr class="text-white">
                 <td>{{ aventure.id }}</td>
                 <td>{{ aventure.titre }}</td>
                 <td>{{ aventure.description }}</td>
                 <td>
                     <a href="{{ path('app_aventure_show', {'id': aventure.id}) }}">show</a>
-                    <a href="{{ path('app_aventure_edit', {'id': aventure.id}) }}">edit</a>
+                    <a href="{{ path('app_aventure_edit', {'id': aventure.id}) }}" class="text-white">edit</a>
                 </td>
             </tr>
         {% else %}

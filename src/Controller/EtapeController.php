@@ -34,9 +34,9 @@ class EtapeController extends AbstractController
             return $this->redirectToRoute('app_etape_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('etape/new.html.twig', [
+        return $this->render('etape/new.html.twig', [
             'etape' => $etape,
-            'form' => $form,
+            'form' => $form
         ]);
     }
 
@@ -44,7 +44,7 @@ class EtapeController extends AbstractController
     public function show(Etape $etape): Response
     {
         return $this->render('etape/show.html.twig', [
-            'etape' => $etape,
+            'etape' => $etape
         ]);
     }
 
@@ -60,9 +60,9 @@ class EtapeController extends AbstractController
             return $this->redirectToRoute('app_etape_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('etape/edit.html.twig', [
+        return $this->render('etape/edit.html.twig', [
             'etape' => $etape,
-            'form' => $form,
+            'form' => $form
         ]);
     }
 

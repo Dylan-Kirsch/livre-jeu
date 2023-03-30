@@ -25,8 +25,6 @@ class Avatar
     public function __construct()
     {
         $this->personnages = new ArrayCollection();
-        $this->etapes = new ArrayCollection();
-        $this->finsPossibles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,66 +68,6 @@ class Avatar
             // set the owning side to null (unless already changed)
             if ($personnage->getAvatar() === $this) {
                 $personnage->setAvatar(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Etape>
-     */
-    public function getEtapes(): Collection
-    {
-        return $this->etapes;
-    }
-
-    public function addEtape(Etape $etape): self
-    {
-        if (!$this->etapes->contains($etape)) {
-            $this->etapes->add($etape);
-            $etape->setFinAdventure($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEtape(Etape $etape): self
-    {
-        if ($this->etapes->removeElement($etape)) {
-            // set the owning side to null (unless already changed)
-            if ($etape->getFinAdventure() === $this) {
-                $etape->setFinAdventure(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Etape>
-     */
-    public function getFinsPossibles(): Collection
-    {
-        return $this->finsPossibles;
-    }
-
-    public function addFinsPossible(Etape $finsPossible): self
-    {
-        if (!$this->finsPossibles->contains($finsPossible)) {
-            $this->finsPossibles->add($finsPossible);
-            $finsPossible->setFinAventure($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFinsPossible(Etape $finsPossible): self
-    {
-        if ($this->finsPossibles->removeElement($finsPossible)) {
-            // set the owning side to null (unless already changed)
-            if ($finsPossible->getFinAventure() === $this) {
-                $finsPossible->setFinAventure(null);
             }
         }
 

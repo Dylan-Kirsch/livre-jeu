@@ -47,7 +47,7 @@ class EtapeControllerTest extends WebTestCase
             'etape[texte_ambiance]' => 'Testing',
             'etape[libelle]' => 'Testing',
             'etape[aventureDebutee]' => 'Testing',
-            'etape[finAdventure]' => 'Testing',
+            'etape[finAventure]' => 'Testing',
             'etape[finAventure]' => 'Testing',
         ]);
 
@@ -63,7 +63,7 @@ class EtapeControllerTest extends WebTestCase
         $fixture->setTexte_ambiance('My Title');
         $fixture->setLibelle('My Title');
         $fixture->setAventureDebutee('My Title');
-        $fixture->setFinAdventure('My Title');
+        $fixture->setFinAventure('My Title');
         $fixture->setFinAventure('My Title');
 
         $this->repository->save($fixture, true);
@@ -83,7 +83,7 @@ class EtapeControllerTest extends WebTestCase
         $fixture->setTexte_ambiance('My Title');
         $fixture->setLibelle('My Title');
         $fixture->setAventureDebutee('My Title');
-        $fixture->setFinAdventure('My Title');
+        $fixture->setFinAventure('My Title');
         $fixture->setFinAventure('My Title');
 
         $this->repository->save($fixture, true);
@@ -94,7 +94,7 @@ class EtapeControllerTest extends WebTestCase
             'etape[texte_ambiance]' => 'Something New',
             'etape[libelle]' => 'Something New',
             'etape[aventureDebutee]' => 'Something New',
-            'etape[finAdventure]' => 'Something New',
+            'etape[finAventure]' => 'Something New',
             'etape[finAventure]' => 'Something New',
         ]);
 
@@ -105,7 +105,7 @@ class EtapeControllerTest extends WebTestCase
         self::assertSame('Something New', $fixture[0]->getTexte_ambiance());
         self::assertSame('Something New', $fixture[0]->getLibelle());
         self::assertSame('Something New', $fixture[0]->getAventureDebutee());
-        self::assertSame('Something New', $fixture[0]->getFinAdventure());
+        self::assertSame('Something New', $fixture[0]->getFinAventure());
         self::assertSame('Something New', $fixture[0]->getFinAventure());
     }
 
@@ -119,7 +119,7 @@ class EtapeControllerTest extends WebTestCase
         $fixture->setTexte_ambiance('My Title');
         $fixture->setLibelle('My Title');
         $fixture->setAventureDebutee('My Title');
-        $fixture->setFinAdventure('My Title');
+        $fixture->setFinAventure('My Title');
         $fixture->setFinAventure('My Title');
 
         $this->repository->save($fixture, true);

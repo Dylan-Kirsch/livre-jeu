@@ -61,7 +61,7 @@ class JouerController extends AbstractController
         ]);
     }
 
-    #[Route('/jouer/aventures/{idPersonnage}/{idAventure}', name: 'app_start_aventure', methods: ['GET'])]
+    #[Route('/jouer/aventure/{idPersonnage}/{idAventure}', name: 'app_start_aventure', methods: ['GET'])]
     public function demarrerAventure( PersonnageRepository $personnageRepository,AventureRepository $AventureRepository,PartieRepository $partieRepository,$idPersonnage,$idAventure): Response
     {
         
@@ -85,23 +85,33 @@ class JouerController extends AbstractController
         return $this->render('jouer/aventure-start.html.twig', [
             'personnage' => $personnage,
             'aventures' => $aventure,
-            'partie' => $partie
+            'partie' => $partie,
         ]);
     }
 
-    #[Route('/jouer/etape/{idPartie}/{idEtape}', name: 'app_play_aventure', methods: ['GET'])]
-
-    public function jouerAventure(PartieRepository $partieRepository, EtapeRepository $etapeRepository, $idPartie, $idEtape)
+    #[Route('/jouer/etape/{idPartie}/{idEtape}/{idPersonnage}', name:'app_play_aventure', methods:['GET'])]
+    public function jouerEtape ($idPartie, $idEtape,$idPersonnage, PartieRepository $partieRepository, EtapeRepository $etapeRepository, PersonnageRepository $personnageRepository): Response
     {
-
-        $partie = $partieRepository->find($idPartie);
         $etape = $etapeRepository->find($idEtape);
+        $partie = $partieRepository->find($idPartie);
+        $personnage = $personnageRepository->find($idPersonnage);
+        $partie->setEtape($etape);
 
-        return $this->render('jouer/aventures.html.twig', [
-            'partie' => $partie,
-            'etape' => $etape
-        ]);
+        if ($etape->getFinAventure()!=null)
+            {
+            return $this->redirectToRoute('app_finir_aventure',['idPersonnage'=> $personnage->getId(), 'idAventure'=> $etape->getAventure()->getId(), 'idEtape'=> $etape->getId()]);
+            }
+            else
+                return $this->render('jouer/aventure-play.html.twig', ['etape'=> $etape, 'partie'=>$partie, 'personnage'=> $personnage]);
+        }
+        
 
+    #[Route('/jouer/aventure/finir/{idPersonnage}/{idAventure}/{idEtape}', name: 'app_finir_aventure', methods:['GET'])] 
+    public function finirPartie ($idPersonnage,$idAventure, $idEtape, PersonnageRepository $personnageRepository, EtapeRepository $etapeRepository, AventureRepository $aventureRepository): Response
+    {
+        $personnage = $personnageRepository->find($idPersonnage);
+        $etape = $etapeRepository->find($idEtape);
+        return $this->render("jouer/aventure-end.html.twig", ['etape'=>$etape,'personnage'=>$personnage]);
     }
 
 }

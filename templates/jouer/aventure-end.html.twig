@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+   
+    <a href="{{ path('app_play_aventure', {'idPartie':partie.id,'idEtape':partie.etape.id}) }}">{{partie.etape.texteAmbiance}}</a>
+
+    <h3>The end, vous avez assuré</h3>
+    
+
+{% endblock %}
