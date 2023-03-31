@@ -58,12 +58,14 @@ class PersonnageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // sauvegarde du personnage
+            $personnage->setUser($this->getUser());
             $personnageRepository->save($personnage, true);
 
             return $this->redirectToRoute('app_personnage_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('personnage/edit.html.twig', [
+        return $this->render('personnage/edit.html.twig', [
             'personnage' => $personnage,
             'form' => $form,
         ]);
