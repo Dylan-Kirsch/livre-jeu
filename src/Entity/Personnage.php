@@ -31,6 +31,7 @@ class Personnage
     public function __construct()
     {
         $this->parties = new ArrayCollection();
+        $this->personnages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,4 +110,6 @@ class Personnage
         return $this->prenom;
         return $this->nom;
     }
+
+    
 }

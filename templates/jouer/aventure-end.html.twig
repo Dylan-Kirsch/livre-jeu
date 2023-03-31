@@ -4,9 +4,9 @@
 {% block body %}
 
    
-    <a href="{{ path('app_play_aventure', {'idPartie':partie.id,'idEtape':partie.etape.id}) }}">{{partie.etape.texteAmbiance}}</a>
+    {{etape.texteAmbiance}}
 
-    <h3>The end, vous avez assuré</h3>
-    
+    <h3 class="text-white">The end, vous avez assuré</h3>
+    <a href="{{ path('app_home') }}" class="text-white">retour a la page de depart</a>
 
 {% endblock %}
