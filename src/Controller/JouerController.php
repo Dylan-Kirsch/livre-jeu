@@ -20,6 +20,9 @@ class JouerController extends AbstractController
     #[Route('/jouer', name: 'app_jouer')]
     public function index(PersonnageRepository $personnageRepository): Response
     {
+        // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // $personnages = $personnageRepository->findBy(["user"=>$this->getUser()]);
+
         $personnages = $personnageRepository->findAll();
         return $this->render('jouer/index.html.twig', [
             'personnages' => $personnages ,
