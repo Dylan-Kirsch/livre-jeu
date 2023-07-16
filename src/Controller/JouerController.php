@@ -74,7 +74,7 @@ class JouerController extends AbstractController
         $partie = $partieRepository->findOneBy(array('aventurier'=>$personnage,'aventure'=>$aventure));
         $isNewPartie = !isset($partie);
 
-        if ($isNewPartie)
+        if ($isNewPartie) 
         {
             $isNewPartie = true;
             $partie=new Partie();
